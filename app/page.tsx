@@ -237,7 +237,7 @@ export default function FichaCreacionCliente() {
             onClick={generarPDF}
             className="bg-gray-800 text-white px-10 py-4 rounded uppercase font-bold hover:bg-black transition-colors shadow-lg"
           >
-            Exportar Ficha B2B a PDF
+            Exportar Ficha a PDF
           </button>
         </div>
 
