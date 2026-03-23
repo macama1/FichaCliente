@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from 'react';
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
 
 export default function FichaCreacionCliente() {
   const [datos, setDatos] = useState({
@@ -21,7 +19,11 @@ export default function FichaCreacionCliente() {
     setDatos({ ...datos, [e.target.name]: e.target.value });
   };
 
-  const generarPDF = () => {
+  const generarPDF = async () => {
+    // Importación dinámica para evitar el Error 500 en Vercel
+    const { default: jsPDF } = await import('jspdf');
+    const { default: autoTable } = await import('jspdf-autotable');
+
     const doc = new jsPDF();
     
     // Título y Vendedor
@@ -50,7 +52,7 @@ export default function FichaCreacionCliente() {
 
     // 2. CONTACTO DEL CLIENTE
     autoTable(doc, {
-      startY: doc.lastAutoTable.finalY + 5,
+      startY: (doc as any).lastAutoTable.finalY + 5,
       head: [['2. CONTACTO DEL CLIENTE', '']],
       body: [
         ['Nombre Completo', datos.nombreContacto],
@@ -64,7 +66,7 @@ export default function FichaCreacionCliente() {
 
     // 3. DATOS DE COBRANZA
     autoTable(doc, {
-      startY: doc.lastAutoTable.finalY + 5,
+      startY: (doc as any).lastAutoTable.finalY + 5,
       head: [['3. DATOS DE COBRANZA', '']],
       body: [
         ['Nombre Encargado', datos.nombreCobranza],
@@ -77,7 +79,7 @@ export default function FichaCreacionCliente() {
 
     // 4. CONDICIONES DE VENTA Y CANAL
     autoTable(doc, {
-      startY: doc.lastAutoTable.finalY + 5,
+      startY: (doc as any).lastAutoTable.finalY + 5,
       head: [['4. CONDICIONES DE VENTA Y CANAL', '']],
       body: [
         ['Forma de Pago', datos.condicionPago],
@@ -87,7 +89,7 @@ export default function FichaCreacionCliente() {
       columnStyles: { 0: { cellWidth: 50, fontStyle: 'bold' } }
     });
 
-    // Guardar
+    // Guardar el PDF
     doc.save(`Ficha_Cliente_${datos.rut || 'Nuevo'}.pdf`);
   };
 
@@ -200,7 +202,6 @@ export default function FichaCreacionCliente() {
           {/* 4. CONDICIONES Y CANAL */}
           <section>
             <h2 className="bg-gray-200 font-bold p-2 mb-3 uppercase border-l-4 border-gray-800">4. Condiciones y Canal</h2>
-            {/* Cambiado a grid-cols-2 para que ocupe bien el espacio */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block font-semibold mb-1">Forma de Pago</label>
@@ -236,7 +237,7 @@ export default function FichaCreacionCliente() {
             onClick={generarPDF}
             className="bg-gray-800 text-white px-10 py-4 rounded uppercase font-bold hover:bg-black transition-colors shadow-lg"
           >
-            Exportar Ficha a PDF
+            Exportar Ficha B2B a PDF
           </button>
         </div>
 
