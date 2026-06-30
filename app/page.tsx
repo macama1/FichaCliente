@@ -112,8 +112,8 @@ export default function FichaCreacionCliente() {
           >
             <option value="">-- Seleccione un vendedor --</option>
             <option value="Andrés Pacheco">Andrés Pacheco</option>
+            <option value="Cristian Maldonado">Cristian Maldonado</option>
             <option value="Eduardo Arias">Eduardo Arias</option>
-            <option value="David Fuentealba">David Fuentealba</option>
             <option value="Jorge Nario">Jorge Nario</option>
             <option value="Loreto Medina">Loreto Medina</option>
             <option value="Manuel Urzúa">Manuel Urzúa</option>
