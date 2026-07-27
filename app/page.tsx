@@ -115,6 +115,7 @@ export default function FichaCreacionCliente() {
             <option value="Cristian Maldonado">Cristian Maldonado</option>
             <option value="Eduardo Arias">Eduardo Arias</option>
             <option value="Jorge Nario">Jorge Nario</option>
+            <option value="Lissett Santana">Jorge Nario</option>
             <option value="Loreto Medina">Loreto Medina</option>
             <option value="Manuel Urzúa">Manuel Urzúa</option>
             <option value="Mauricio Carvajal">Mauricio Carvajal</option>
